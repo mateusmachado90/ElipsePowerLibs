@@ -1,0 +1,15 @@
+'returns the complete class name for Discrete and Analog Measurements 
+'(note that in runtime the TypeName() method will only return "PowerDiscreteSource"/"PowerAnalogSource")
+Function ConvertSource(SourceObj)
+
+	strSourceTypeName = TypeName(SourceObj)
+	
+	If strSourceTypeName = "PowerDiscreteSource" then
+		ConvertSource = "PowerDiscrete"&SourceObj.Name&"Source"
+	ElseIf strSourceTypeName = "PowerAnalogSource" then
+		ConvertSource = "PowerAnalog"&SourceObj.Name&"Source"
+	Else
+		ConvertSource = strSourceTypeName
+	End If
+
+End Function
