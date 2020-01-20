@@ -1,0 +1,30 @@
+'returns the complete class name for alarm sources (in runtime the TypeName() function will only return "AlarmSource")
+Function GetAlarmType(alarmObj)
+	
+	on error resume next
+	
+	'only Analog alarms have the "Hi" property
+	errCheck = alarmObj.Hi : If Err.Number = 0 then GetAlarmType = "DiscreteAlarmSource"
+	Err.Clear
+	
+	'only Discrete alarms have the "SubConditions" property
+	errCheck = alarmObj.SubConditions : If Err.Number = 0 then GetAlarmType = "AnalogAlarmSource"
+	
+	'only Digital alarms have the "Digital" property
+	errCheck = alarmObj.Digital : If Err.Number = 0 then GetAlarmType = "DigitalAlarmSource"
+	Err.Clear
+	
+	'only Deadband alarms have the "Deadband" property
+	errCheck = alarmObj.Deadband : If Err.Number = 0 then GetAlarmType = "DeadBandAlarmSource"
+	Err.Clear
+	
+	'only ROC alarms have the "ROC" property
+	errCheck = alarmObj.ROC : If Err.Number = 0 then GetAlarmType = "ROCAlarmSource"
+	Err.Clear
+	
+	on error goto 0
+	
+	'if none of the above...
+	GetAlarmType = "AlarmSource"
+	
+End Function
