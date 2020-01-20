@@ -1,0 +1,46 @@
+'checks if a given object exists inside a folder. Returns TRUE or FALSE.
+Function CheckIfExists(objName, folder)
+	
+	on error resume next
+	If TypeName(folder) = "IE3StudioApplication" then
+		set testExistance = Application.GetObject(objName)
+	Else
+		set testExistance = folder.Item(objName)
+	End If
+	errN = Err.Number : Err.Clear() : on error goto 0
+	
+	If errN <> 0 then 'obj doesn't exist
+		CheckIfExists = False
+	Else
+		CheckIfExists = True
+	End If
+End Function
+
+'returns an existent object; or, creates the object if there isn't one with the given name and returns such object.
+Function GetOrCreate(objType, bActivate, objName, folder)
+	
+	if CheckIfExists(objName, folder) = false then 'obj doesn't exist
+		set GetOrCreate = folder.AddObject(objType, bActivate, objName)
+	Else
+		set GetOrCreate = folder.Item(objName)
+	End If
+	
+End Function
+
+Sub MyMainSub()
+  
+  'usage example
+  set MyFeeder = Application.GetObject("Feeder1")
+  If CheckIfExists("Recloser123", MyFeeder) then
+    MsgBox "Recloser123 does exist inside Feeder1"
+  Else
+    MsgBox "Recloser123 does NOT exist inside Feeder1"
+  End If
+  
+  'usage with containers
+  MsgBox CheckIfExists("Substation2", Application)
+  
+  'gives you either the existent or the newly-created object
+  set myRecloser = GetOrCreate("PowerRecloser", FALSE, "Recloser456", MyFeeder)
+
+End Sub
