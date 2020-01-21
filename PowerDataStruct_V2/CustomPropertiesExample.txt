@@ -1,0 +1,1 @@
+Name;ShortName;ID;BaseVoltage;BaseVoltage1;BaseVoltage2;HasSelfHealingControl;PositiveFlowIn;MeasurementType;ActiveSource;CommandType;Conversion;CommandName;OperateWriteTag;ProtectionType
