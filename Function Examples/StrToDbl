@@ -1,0 +1,13 @@
+'this function properly converts a string to double regardless of which decimal separator was configured in Regional and Language Settings of the current Windows User
+Function StrToDbl(s)
+
+                testValue = cstr(Round(1/2, 1))
+                If testValue = "0,5" then
+                                result = Replace(s, ".", ",")
+                ElseIf testValue = "0.5" then
+                                result = Replace(s, ",", ".")
+                End If
+                
+                StrToDbl = CDbl(result)
+
+End Function
