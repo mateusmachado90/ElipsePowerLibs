@@ -1,0 +1,13 @@
+Function ArrToDict(arr)
+
+	set dict = CreateObject("Scripting.Dictionary")
+
+	for each strName in arr
+		if NOT dict.Exists(strName) then 'ignora containers duplicados
+			dict.Add strName, 0
+		end if
+	next
+
+	set ArrToDict = dict
+	
+End Function
