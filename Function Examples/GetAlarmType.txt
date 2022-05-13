@@ -4,11 +4,11 @@ Function GetAlarmType(alarmObj)
 	on error resume next
 	
 	'only Analog alarms have the "Hi" property
-	errCheck = alarmObj.Hi : If Err.Number = 0 then GetAlarmType = "DiscreteAlarmSource"
+	errCheck = alarmObj.Hi : If Err.Number = 0 then GetAlarmType = "AnalogAlarmSource"
 	Err.Clear
 	
 	'only Discrete alarms have the "SubConditions" property
-	errCheck = alarmObj.SubConditions : If Err.Number = 0 then GetAlarmType = "AnalogAlarmSource"
+	errCheck = alarmObj.SubConditions : If Err.Number = 0 then GetAlarmType = "DiscreteAlarmSource"
 	
 	'only Digital alarms have the "Digital" property
 	errCheck = alarmObj.Digital : If Err.Number = 0 then GetAlarmType = "DigitalAlarmSource"
