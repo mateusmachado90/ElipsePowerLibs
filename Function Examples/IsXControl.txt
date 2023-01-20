@@ -1,0 +1,18 @@
+'função que retorna um booleano indicando se um objeto de tela é uma instância de XControl que contém um script no evento CustomConfig.
+'retorna FALSE se não for um XControl, ou se for um XControl sem nenhum script configurado em CustomConfig.
+Function IsXControl(screenObj)
+
+    on error resume next
+    screenObj.RunEvent "CustomConfig", "DummyArg"
+    ErrNumber = Err.Number : Err.Clear : on error goto 0
+    
+    Select Case ErrNumber
+    Case 450 'Número de argumentos incorreto ou atribuição de propriedade inválida
+        IsXControl = True
+    Case 438 'O objeto não dá suporte para a propriedade ou método
+        IsXControl = False
+    Case Else 'Não deve cair nunca aqui... 
+        IsXControl = False
+    End Select
+    
+End Function
