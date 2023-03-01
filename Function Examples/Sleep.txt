@@ -2,4 +2,5 @@ Function Sleep(intSeconds)
   Dim dteWait
   dteWait = DateAdd("s", intSeconds, Now())
   Do Until (Now() > dteWait)
-Loop
+  Loop
+End Function
