@@ -1,5 +1,6 @@
 'função que retorna um booleano indicando se um objeto de tela é uma instância de XControl que contém um script no evento CustomConfig.
 'retorna FALSE se não for um XControl, ou se for um XControl sem nenhum script configurado em CustomConfig.
+'ATENÇÃO! Esta função tem o efeito colateral indesejado de executar o script do evento CustomConfig() do XControl passado como parâmetro em 'screenObj'.
 Function IsXControl(screenObj)
 
     on error resume next
