@@ -40,7 +40,7 @@ Sub MyMainSub()
   'usage with containers
   MsgBox CheckIfExists("Substation2", Application)
   
-  'gives you either the existent or the newly-created object
+  'returns either the existent or the newly-created object
   set myRecloser = GetOrCreate("PowerRecloser", FALSE, "Recloser456", MyFeeder)
 
 End Sub
