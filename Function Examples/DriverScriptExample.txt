@@ -1,4 +1,6 @@
 Sub Driver1_OnStartRunning()
+	'Objeto IODriver precisa ter algum texto na propriedade DriverLocation (ex: "a"), para que o Studio permita rodar o mesmo.
+	'Recomenda-se deixar o driver em um prj desabilitado, para não consumir licenças.
 
 	'não roda em runtime
 	If TypeName(me.Application) <> "IE3StudioApplication" then EXIT SUB
